@@ -19,6 +19,7 @@ var casillerosSinDescubrir;
 
 function setup()
 {
+  
   createCanvas(500, 500);   //crea un lienzo o panel donde estará el juego. El primer parámetro es el ancho y el segundo el alto del lienzo.
   laMagiaDeLosProfes();
 
@@ -26,18 +27,34 @@ function setup()
   COLOR_CASILLERO_CON_MINA = color("#FF0000");
   COLOR_CASILLERO_SIN_MINA = color("#1CC932");
   COLOR_CASILLERO_MARCADO = color("#278EF2");
+  ponerMinaCasillero(4, 5);
 
   // Modificar/completar
 }
 
 
 function draw() {
+ 
   if (hizoClick == true)
   {
-    pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_SIN_MINA); //pinta el casillero clickeado. Modificar/completar
+    if(mouseButton == LEFT)
+    {
+      if (tieneMinaCasillero(columnaPresionada, filaPresionada) )
+      {
+        perder();
+      }
+      else
+      {
+        pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_SIN_MINA); //pinta el casillero clickeado. Modificar/completar
+        descubrirCasillero(columnaPresionada, filaPresionada);
+      }
+    }
+   else
+    {
+      pintarCasillero();
+    }
 
 
-    
     hizoClick = false;  //Indico que ya "procesé" el click del usuario. NO modificar
   }
 }
