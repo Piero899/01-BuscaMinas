@@ -1,7 +1,7 @@
 //Constantes del juego
-const COLUMNAS = 10;
-const FILAS = 10;
-const CANTIDAD_MINAS = 10;
+const COLUMNAS = 3;
+const FILAS = 3;
+const CANTIDAD_MINAS = 4;
 
 //Variables con colores para los casilleros (NO se pudieron declarar como constantes ya que  la fn color sólo está definida para el setup y el draw)
 var COLOR_CASILLERO_CON_MINA;
@@ -14,12 +14,12 @@ var filaPresionada;
 var hizoClick = false;
 
 //Otras variables
-var casillerosSinDescubrir;
+var casillerosSinDescubrir = FILAS*COLUMNAS;
 
 
 function setup()
 {
-  
+  casillerosSinDescubrir;
   createCanvas(500, 500);   //crea un lienzo o panel donde estará el juego. El primer parámetro es el ancho y el segundo el alto del lienzo.
   laMagiaDeLosProfes();
 
@@ -27,7 +27,7 @@ function setup()
   COLOR_CASILLERO_CON_MINA = color("#FF0000");
   COLOR_CASILLERO_SIN_MINA = color("#1CC932");
   COLOR_CASILLERO_MARCADO = color("#278EF2");
-  ponerMinaCasillero(4, 5);
+  ponerMinasTablero();
 
   // Modificar/completar
 }
@@ -49,30 +49,48 @@ function draw() {
         descubrirCasillero(columnaPresionada, filaPresionada);
       }
     }
-   else
-    {
-      pintarCasillero();
+    else {
+      pintarCasillero(columnaPresionada, filaPresionada, COLOR_CASILLERO_MARCADO);
     }
 
 
     hizoClick = false;  //Indico que ya "procesé" el click del usuario. NO modificar
   }
+  if (ganoElJuego()==true)
+    ganar();
 }
 
 
 function ganoElJuego()
 {
-  return false;   //Esto hace que NUNCA gane el juego. Modificar/completar
+  if (casillerosSinDescubrir==CANTIDAD_MINAS)
+    return true; 
+   else
+    return false;
+    //Esto hace que NUNCA gane el juego. Modificar/completar
 }
 
 function ponerMinasTablero()
 {
-  // Modificar/completar
+  for (let contador = 0; contador < CANTIDAD_MINAS; contador++)
+  {
+    numeroAleatorio = Math.floor(random(0, COLUMNAS));
+    numeroAleatorio2 = Math.floor(random(0, FILAS));
+    ponerMinaCasillero(numeroAleatorio, numeroAleatorio2);
+
+    console.log("Puse una mina en fila: " + numeroAleatorio + " y columna " + numeroAleatorio2);
+  }
+    //for
+    //1 mina
+    //necesito 2 numeros aleatorios  (fila y columna donde pondrá la mina)
+    //random
+    //ponerMinaCasillero(columnaRandom, filaRandom);
 }
 
 function mostrarMinas()
 {
-  // Modificar/completar
+
+
 }
 
 function contarMinasAlrededor(columna, fila)
