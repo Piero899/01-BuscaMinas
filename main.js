@@ -27,9 +27,8 @@ function setup()
   COLOR_CASILLERO_CON_MINA = color("#FF0000");
   COLOR_CASILLERO_SIN_MINA = color("#1CC932");
   COLOR_CASILLERO_MARCADO = color("#278EF2");
+  
   ponerMinasTablero();
-
-  // Modificar/completar
 }
 
 
