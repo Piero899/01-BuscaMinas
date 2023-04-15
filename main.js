@@ -101,12 +101,24 @@ function mostrarMinas()
 
 function contarMinasAlrededor(columna, fila)
 {
-  //let contador=0;
-  //for (let i = fila -1; i<= fila + 1; 1++){
-    //for (let (j = columna - 1; j <= columna +1; 1++){
-      //if (tieneMinaCasillero)
-       // contador+1
-    //}
-  //}
-   //return contador
+  let contadorMinas = 0;
+
+  // Recorre los 8 casilleros adyacentes al casillero dado
+  for (let dx = -1; dx <= 1; dx++) {
+    for (let dy = -1; dy <= 1; dy++) {
+      // Calcula la columna y la fila del casillero adyacente
+      const columnaAdyacente = columna + dx;
+      const filaAdyacente = fila + dy;
+
+      // Si el casillero adyacente está dentro del tablero
+      if (columnaAdyacente >= 0 && columnaAdyacente < COLUMNAS && filaAdyacente >= 0 && filaAdyacente < FILAS) {
+        // Si el casillero adyacente tiene una mina, aumenta el contador de minas
+        if (tieneMinaCasillero(columnaAdyacente, filaAdyacente)) {
+          contadorMinas++;
+        }
+      }
+    }
+  }
+
+  return contadorMinas;
 }

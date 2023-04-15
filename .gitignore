@@ -1,2 +1,10 @@
 .vscode
 ToDo.md
+  let contador=0;
+  for (let i = fila -1; i<= fila + 1; 1++){
+    for (let (j = columna - 1; j <= columna +1; 1++){
+      if (tieneMinaCasillero)
+        contador+1
+    }
+  }
+   return contador
